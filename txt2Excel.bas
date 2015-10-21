@@ -1,4 +1,51 @@
 Attribute VB_Name = "Módulo1"
+Sub an_map()
+'
+' an_map Macro
+' Análise dos Resultados do MAP File
+'
+' Atalho do teclado: Not Registered
+'
+    Call txtimport
+    Call ult_matrix
+    Call suprim
+    Call VME_DTE_max
+End Sub
+Public Sub an_snp()
+'
+' an_snp Macro
+' Análise dos Resultados do SNP File
+'
+' Atalho do teclado: Not Registered
+'
+    'txtimport1 ("TesteRodando3_1_1_RD_Linha_1_r.SNP")
+    txtimport1 ("Teste_Mauro_RD_Linha_1_r.SNP")
+    Call ult_copy
+    paste (426)
+    'Call paste_test
+    Derivada (426)
+    tan_min (426)
+    Call encontrar_indice
+    Call coor_pto_inflex
+End Sub
+Sub test()
+    'Call txtimport
+    'Call ult_matrix
+    '...ActiveCell.SpecialCells(xlLastCell).Select
+    '...ActiveCell.Offset(0, 1).Range("A1").Select
+    'Range("B1").Select
+    'Selection.End(xlDown).Select
+    'ActiveCell.Offset(0, -1).Range("A1").Select
+    'Selection.End(xlUp).Select                  'sobe até o inicio da coluna ctrl+up
+    'Selection.End(xlUp).Select                  '(ctrl+up)
+    'ActiveCell.Offset(-3, 0).Range("A1").Select
+    'Path = Worksheets
+    
+    'MsgBox "Path: " & "1"
+    'ActiveWindow.ScrollColumn = 2
+    
+    MsgBox "The name of the active workbook is " & ActiveWorkbook.Path
+End Sub
 Sub txtimport()
 Attribute txtimport.VB_Description = "import txt"
 Attribute txtimport.VB_ProcData.VB_Invoke_Func = " \n14"
@@ -69,6 +116,7 @@ Attribute txtimport.VB_ProcData.VB_Invoke_Func = " \n14"
 '    End With
     
 End Sub
+
 'Sub ult_matrix()
 ''
 '' ult_matrix Macro
@@ -99,41 +147,17 @@ Sub ult_matrix()
     ActiveCell.Offset(-3, 0).Range("A1").Select     'sobe 3 celulas para cima (up) usa referencia relativa
 
 End Sub
-Sub test()
-    'Call txtimport
-    'Call ult_matrix
-    '...ActiveCell.SpecialCells(xlLastCell).Select
-    '...ActiveCell.Offset(0, 1).Range("A1").Select
-    'Range("B1").Select
-    'Selection.End(xlDown).Select
-    'ActiveCell.Offset(0, -1).Range("A1").Select
-    'Selection.End(xlUp).Select                  'sobe até o inicio da coluna ctrl+up
-    'Selection.End(xlUp).Select                  '(ctrl+up)
-    'ActiveCell.Offset(-3, 0).Range("A1").Select
-    'Path = Worksheets
-    
-    'MsgBox "Path: " & "1"
-    'ActiveWindow.ScrollColumn = 2
-    
-    MsgBox "The name of the active workbook is " & ActiveWorkbook.Path
-End Sub
 Sub suprim()
 Attribute suprim.VB_ProcData.VB_Invoke_Func = " \n14"
 '
 ' suprim Macro
-'
+' Delete the matrix
 
 '
     Range(Selection, Selection.End(xlToRight)).Select
     Range(Selection, Cells(1)).Select
     Selection.Delete Shift:=xlUp
     Range("A1").Select
-End Sub
-Sub an_map()
-    Call txtimport
-    Call ult_matrix
-    Call suprim
-    Call VME_DTE_max
 End Sub
 Sub VME_DTE_max()
 Attribute VME_DTE_max.VB_Description = "Von Mises e Deformação maximo"
@@ -162,52 +186,6 @@ Attribute VME_DTE_max.VB_ProcData.VB_Invoke_Func = " \n14"
     'Application.CutCopyMode = False
     'ActiveCell.FormulaR1C1 = "=MAX(R[5]C:R[854]C)"
     Range("A1").Select
-End Sub
-Sub ult_matrix1()
-'
-' ult_matrix1 Macro
-'
-
-'
-    ActiveCell.SpecialCells(xlLastCell).Select
-    Selection.End(xlToLeft).Select
-    Selection.End(xlUp).Select
-    Selection.End(xlUp).Select
-    Range("A32453").Select
-    Selection.End(xlUp).Select
-    Selection.End(xlUp).Select
-    Range("B31601").Select
-    Selection.End(xlUp).Select
-    Range("A1").Select
-End Sub
-Sub ult_matrix2()
-'
-' ult_matrix2 Macro
-'
-
-'
-    ActiveCell.SpecialCells(xlLastCell).Select
-    Selection.End(xlToLeft).Select
-    Selection.End(xlUp).Select
-    Selection.End(xlUp).Select
-    ActiveCell.Offset(-1, 0).Range("A1").Select
-    'Range("A32452").Select
-End Sub
-Sub subir()
-'
-' subir Macro
-'
-
-'
-    ActiveCell.Offset(-1, 0).Range("A1").Select
-End Sub
-Sub endereço()
-'
-' endereço Macro
-'
-
-'
-    ActiveSheet.paste
 End Sub
 Sub txtimport1(ByVal file_name As String)
 '
@@ -247,19 +225,6 @@ Sub txtimport1(ByVal file_name As String)
     End With
        
 End Sub
-
-Public Sub prueva()
-    'Teste_Mauro_RD_Linha_1_r.SNP
-    'txtimport1 ("TesteRodando3_1_1_RD_Linha_1_r.SNP")
-    txtimport1 ("Teste_Mauro_RD_Linha_1_r.SNP")
-    Call ult_copy
-    paste (426)
-    'Call paste_test
-    Derivada (426)
-    tan_min (426)
-    Call encontrar_indice
-    Call coor_pto_inflex
-End Sub
 Sub ult_copy()
 '
 ' ult_desc Macro
@@ -273,14 +238,6 @@ Sub ult_copy()
     ActiveCell.Offset(-425, -3).Range("A1:C426").Select
     Selection.copy
     'ActiveCell.Offset(0, -1).Range("A1").Activate
-End Sub
-Sub copy()
-'
-' copy Macro
-'
-
-'
-    Selection.copy
 End Sub
 Sub paste(n)
 '
@@ -331,57 +288,6 @@ Sub paste(n)
         .MergeCells = False
     End With
 End Sub
-
-Sub paste_test()
-'
-' paste Macro
-'
-
-'
-'    Range("G4").Select
-'    ActiveSheet.paste
-'    Range("G3").Select
-'    Application.CutCopyMode = False
-'    ActiveCell.FormulaR1C1 = "X"
-'    Range("H3").Select
-'    ActiveCell.FormulaR1C1 = "Y"
-'    Range("I3").Select
-'    ActiveCell.FormulaR1C1 = "Z"
-'    Range("J3").Select
-'    ActiveCell.FormulaR1C1 = "X"
-'    Range("K3").Select
-'    ActiveCell.FormulaR1C1 = "Y"
-'    Range("L3").Select
-'    ActiveCell.FormulaR1C1 = "Z"
-'    Range("J4").Select
-'    ActiveCell.FormulaR1C1 = "=RC[-8]+RC[-3]"
-'    Range("J4").Select
-'    Selection.AutoFill Destination:=Range("J4:L4"), Type:=xlFillDefault
-    
-    
-    
-    'Range("J4:L4").Select
-    'esticar ("A1:C426")
-    
-    'Selection.AutoFill Destination:=Range("J4:L430")
-    'Range("J4:L3412").Select
-    
-    Columns("L:L").EntireColumn.AutoFit
-    Range("J3:L3").Select
-    Selection.Font.Bold = True
-    With Selection
-        .HorizontalAlignment = xlCenter
-        .VerticalAlignment = xlBottom
-        .WrapText = False
-        .Orientation = 0
-        .AddIndent = False
-        .IndentLevel = 0
-        .ShrinkToFit = False
-        .ReadingOrder = xlContext
-        .MergeCells = False
-    End With
-End Sub
-
 Sub Derivada(n)
 '
 ' Derivada Macro
@@ -411,17 +317,6 @@ Sub Derivada(n)
     nn = "A1:A" & n - 1
     esticar (nn)
     'Range("M5:M206187").Select
-End Sub
-Sub esticar(ByVal matriz As String)
-'
-' esticar Macro
-' esticar formulas
-'
-
-'
-    Selection.AutoFill Destination:=ActiveCell.Range(matriz), Type:= _
-        xlFillDefault
-    ActiveCell.Range(matriz).Select
 End Sub
 Sub tan_min(ByVal n As Integer)
 '
@@ -506,5 +401,124 @@ Sub coor_pto_inflex()
     End With
     Selection.Font.Bold = True
 End Sub
+Sub esticar(ByVal matriz As String)
+'
+' esticar Macro
+' esticar formulas
+'
+
+'
+    Selection.AutoFill Destination:=ActiveCell.Range(matriz), Type:= _
+        xlFillDefault
+    ActiveCell.Range(matriz).Select
+End Sub
+Sub paste_test()
+'
+' paste Macro
+'
+
+'
+'    Range("G4").Select
+'    ActiveSheet.paste
+'    Range("G3").Select
+'    Application.CutCopyMode = False
+'    ActiveCell.FormulaR1C1 = "X"
+'    Range("H3").Select
+'    ActiveCell.FormulaR1C1 = "Y"
+'    Range("I3").Select
+'    ActiveCell.FormulaR1C1 = "Z"
+'    Range("J3").Select
+'    ActiveCell.FormulaR1C1 = "X"
+'    Range("K3").Select
+'    ActiveCell.FormulaR1C1 = "Y"
+'    Range("L3").Select
+'    ActiveCell.FormulaR1C1 = "Z"
+'    Range("J4").Select
+'    ActiveCell.FormulaR1C1 = "=RC[-8]+RC[-3]"
+'    Range("J4").Select
+'    Selection.AutoFill Destination:=Range("J4:L4"), Type:=xlFillDefault
+    
+    
+    
+    'Range("J4:L4").Select
+    'esticar ("A1:C426")
+    
+    'Selection.AutoFill Destination:=Range("J4:L430")
+    'Range("J4:L3412").Select
+    
+    Columns("L:L").EntireColumn.AutoFit
+    Range("J3:L3").Select
+    Selection.Font.Bold = True
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+End Sub
+Sub ult_matrix1()
+'
+' ult_matrix1 Macro
+'
+
+'
+    ActiveCell.SpecialCells(xlLastCell).Select
+    Selection.End(xlToLeft).Select
+    Selection.End(xlUp).Select
+    Selection.End(xlUp).Select
+    Range("A32453").Select
+    Selection.End(xlUp).Select
+    Selection.End(xlUp).Select
+    Range("B31601").Select
+    Selection.End(xlUp).Select
+    Range("A1").Select
+End Sub
+Sub ult_matrix2()
+'
+' ult_matrix2 Macro
+'
+
+'
+    ActiveCell.SpecialCells(xlLastCell).Select
+    Selection.End(xlToLeft).Select
+    Selection.End(xlUp).Select
+    Selection.End(xlUp).Select
+    ActiveCell.Offset(-1, 0).Range("A1").Select
+    'Range("A32452").Select
+End Sub
+Sub subir()
+'
+' subir Macro
+'
+
+'
+    ActiveCell.Offset(-1, 0).Range("A1").Select
+End Sub
+Sub endereço()
+'
+' endereço Macro
+'
+
+'
+    ActiveSheet.paste
+End Sub
+
+
+
+
+Sub copy()
+'
+' copy Macro
+'
+
+'
+    Selection.copy
+End Sub
+
 
 
