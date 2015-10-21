@@ -1,0 +1,5 @@
+Marcelo|Masculino|Brasil
+Manoel|Masculino|Portugal
+Maria|Feminino|Espanha
+Michael|Masculino|Estados Unidos da América
+Rachel|Feminino|França
