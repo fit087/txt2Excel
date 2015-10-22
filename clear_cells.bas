@@ -27,3 +27,60 @@ Sub ClearSheet()
 Sheets(“Sheet1”).Delete
 
 End Sub
+
+
+' Save
+'With this Method we can Save a Workbook as it's existing name or as another name and path.  We can trick Excel into thinking a Workbook is already had it's changes Saved.  This may also be a good time to introduce the two methods available to refer to the active Workbook.  The first one is:
+Sub SaveActiveWorkbook()
+    ActiveWorkbook.Save
+End Sub
+
+' The second is:
+Sub SaveThisWorkbook()
+    ThisWorkbook.Save
+End Sub
+
+Sub sbVBS_To_SAVE_ActiveWorkbook()
+    ActiveWorkbook.Save
+End Sub
+
+Sub ActivateAnotherWorkbookViaName()
+    Workbooks("Book2").Activate
+End Sub
+
+Sub ActivateAnotherWorkbookViaIndex()
+    Workbooks(3).Activate
+End Sub
+
+
+' Save as
+'  expression .SaveAs(FileName, FileFormat, Password, WriteResPassword, ReadOnlyRecommended, CreateBackup, AccessMode, ConflictResolution, AddToMru, TextCodepage, TextVisualLayout, Local)
+
+' expression A variable that represents a Workbook object.
+
+Set NewBook = Workbooks.Add 
+Do 
+    fName = Application.GetSaveAsFilename 
+Loop Until fName <> False 
+NewBook.SaveAs Filename:=fName
+
+
+' NewBook
+
+Sub AddOne()
+    Workbooks.Add
+End Sub
+		
+
+'A better way to create a new workbook is to assign it to an object variable. In the following example, the Workbook object returned by the Add method is assigned to an object variable, newBook. Next, several properties of newBook are set. You can easily control the new workbook using the object variable.
+
+Sub AddNew()
+Set NewBook = Workbooks.Add
+    With NewBook
+        .Title = "All Sales"
+        .Subject = "Sales"
+        .SaveAs Filename:="Allsales.xls"
+    End With
+End Sub
+		
+

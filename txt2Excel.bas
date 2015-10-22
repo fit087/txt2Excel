@@ -29,6 +29,13 @@ Public Sub an_snp()
     Call coor_pto_inflex
 End Sub
 Sub test()
+'
+' test Macro
+' Tool created to depure an_map()
+'
+' Atalho do teclado: Not Registered
+'
+
     'Call txtimport
     'Call ult_matrix
     '...ActiveCell.SpecialCells(xlLastCell).Select
@@ -51,7 +58,8 @@ Attribute txtimport.VB_Description = "import txt"
 Attribute txtimport.VB_ProcData.VB_Invoke_Func = " \n14"
 '
 ' txtimport Macro
-' import txt
+' import the text file called Resultado.MAP
+' The 2 first columns are taken with text the anothers how
 '
 '
 ' "\D16_LA50_R150Relax2_r.MAP"
@@ -132,6 +140,13 @@ End Sub
 'End Sub
 
 Sub ult_matrix()
+'
+' ult_matrix Macro
+' Find the last matrix on the *.MAP document
+'
+' Atalho do teclado: Not Registered
+'
+
 '    ActiveCell.SpecialCells(xlLastCell).Select  'va para a ultima celula do arquivo
 '    Selection.End(xlToLeft).Select              'Retorna ao inicio da ultima linha
 '    Selection.End(xlUp).Select                  'sobe até o inicio da coluna ctrl+up
@@ -151,7 +166,7 @@ Sub suprim()
 Attribute suprim.VB_ProcData.VB_Invoke_Func = " \n14"
 '
 ' suprim Macro
-' Delete the matrix
+' Delete the other matrices on the *.map file
 
 '
     Range(Selection, Selection.End(xlToRight)).Select
@@ -164,7 +179,7 @@ Attribute VME_DTE_max.VB_Description = "Von Mises e Deformação maximo"
 Attribute VME_DTE_max.VB_ProcData.VB_Invoke_Func = " \n14"
 '
 ' VME_DTE_max Macro
-' Von Mises e Deformação maximo
+' Toma o Von Mises e Deformação maxima from the *.MAP file
 '
 
 '
@@ -190,7 +205,7 @@ End Sub
 Sub txtimport1(ByVal file_name As String)
 '
 ' txtimport Macro
-' import txt
+' Import txt for *.SNP file
 '
 '
 ' "\D16_LA50_R150Relax2_r.MAP"
@@ -228,7 +243,7 @@ End Sub
 Sub ult_copy()
 '
 ' ult_desc Macro
-' ultimas deformações
+' Copia as ultimas deformações from *.SNP file
 '
 
 '
@@ -242,7 +257,7 @@ End Sub
 Sub paste(n)
 '
 ' paste Macro
-'
+' Cola as deformações de n pontos do lado da configuração original
 
 '
     Range("G4").Select
@@ -291,7 +306,7 @@ End Sub
 Sub Derivada(n)
 '
 ' Derivada Macro
-' Derivada de Z
+' Derivada do dz/dy por diferenças finitas
 '
 
 '
@@ -321,7 +336,7 @@ End Sub
 Sub tan_min(ByVal n As Integer)
 '
 ' tan_min Macro
-' o minimo da tangente (derivada)
+' Acha o minimo da tangente (derivada) à curva z=f(y)
 '
 
 '
@@ -333,7 +348,7 @@ End Sub
 Sub encontrar_indice()
 '
 ' encontrar_indice Macro
-' Encontra o Indice do valor procurado
+' Encontra o Indice do valor procurado nesse caso a tangente minima que corresponde ao ponto de inflexão.
 '
 
 '
@@ -344,7 +359,7 @@ End Sub
 Sub coor_pto_inflex()
 '
 ' coor_pto_inflex Macro
-' coordenadas do ponto de inflexão
+' ubica na matriz de pontos as coordenadas do ponto de inflexão com o conhecimento do indice do pto de minimo.
 '
 
 '
@@ -404,7 +419,7 @@ End Sub
 Sub esticar(ByVal matriz As String)
 '
 ' esticar Macro
-' esticar formulas
+' esticar formulas até fim dos dados de entrada.
 '
 
 '
@@ -415,7 +430,7 @@ End Sub
 Sub paste_test()
 '
 ' paste Macro
-'
+' testador de rotinas testa a an_snp
 
 '
 '    Range("G4").Select
@@ -507,10 +522,6 @@ Sub endereço()
 '
     ActiveSheet.paste
 End Sub
-
-
-
-
 Sub copy()
 '
 ' copy Macro
