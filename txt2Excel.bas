@@ -1,6 +1,8 @@
 Attribute VB_Name = "Módulo1"
-Private Sub automatic()
+Public Sub automatic()
     Dim no As Integer
+    'Call DeleteSheet
+    Call NewSheet
     no = an_snp()
     an_map (no)
 End Sub
@@ -17,7 +19,7 @@ End Sub
 '    Call suprim
 '    Call VME_DTE_max
 'End Sub
-Sub test1()
+Private Sub test1()
     ' an_map (317)
 '    Range("R5").Select
 '    ActiveCell.FormulaR1C1 = ChrW(916) ' " \n916"
@@ -36,7 +38,7 @@ Sub an_map(no As Integer)
     'Call VME_DTE_max
     VME_DTE_max1 (no)
 End Sub
-Private Function an_snp() As Integer
+Public Function an_snp() As Integer
 '
 ' an_snp Macro
 ' Análise dos Resultados do SNP File
@@ -55,7 +57,7 @@ Private Function an_snp() As Integer
     an_snp = Range("M1").Value
     Call delete_snp_data
 End Function
-Sub txtimport()
+Private Sub txtimport()
 Attribute txtimport.VB_Description = "import txt"
 Attribute txtimport.VB_ProcData.VB_Invoke_Func = " \n14"
 '
@@ -95,7 +97,7 @@ Attribute txtimport.VB_ProcData.VB_Invoke_Func = " \n14"
         .Refresh BackgroundQuery:=False
     End With
 End Sub
-Sub ult_matrix()
+Private Sub ult_matrix()
 '
 ' ult_matrix Macro
 ' Find the last matrix on the *.MAP document
@@ -119,7 +121,7 @@ Sub ult_matrix()
     ActiveCell.Offset(-3, 0).Range("A1").Select     'sobe 3 celulas para cima (up) usa referencia relativa
 
 End Sub
-Sub suprim()
+Private Sub suprim()
 Attribute suprim.VB_ProcData.VB_Invoke_Func = " \n14"
 '
 ' suprim Macro
@@ -131,7 +133,7 @@ Attribute suprim.VB_ProcData.VB_Invoke_Func = " \n14"
     Selection.Delete Shift:=xlUp
     Range("A1").Select
 End Sub
-Sub VME_DTE_max()
+Private Sub VME_DTE_max()
 Attribute VME_DTE_max.VB_Description = "Von Mises e Deformação maximo"
 Attribute VME_DTE_max.VB_ProcData.VB_Invoke_Func = " \n14"
 '
@@ -153,7 +155,7 @@ Attribute VME_DTE_max.VB_ProcData.VB_Invoke_Func = " \n14"
     'ActiveCell.FormulaR1C1 = "=MAX(R[5]C:R[854]C)"
     Range("A1").Select
 End Sub
-Sub VME_DTE_max1(inflex_pto As Integer)
+Private Sub VME_DTE_max1(inflex_pto As Integer)
 '
 ' VME_DTE_max Macro
 ' Toma o Von Mises e Deformação maxima from the *.MAP file
@@ -202,7 +204,7 @@ Sub VME_DTE_max1(inflex_pto As Integer)
     Range("A1").Select
 End Sub
 
-Sub txtimport1(ByVal file_name As String)
+Private Sub txtimport1(ByVal file_name As String)
 '
 ' txtimport Macro
 ' Import txt for *.SNP file
@@ -240,7 +242,7 @@ Sub txtimport1(ByVal file_name As String)
     End With
        
 End Sub
-Sub ult_copy()
+Private Sub ult_copy()
 '
 ' ult_desc Macro
 ' Copia as ultimas deformações from *.SNP file
@@ -254,7 +256,7 @@ Sub ult_copy()
     Selection.copy
     'ActiveCell.Offset(0, -1).Range("A1").Activate
 End Sub
-Sub paste(n)
+Private Sub paste(n)
 '
 ' paste Macro
 ' Cola as deformações de n pontos do lado da configuração original (SNP file)
@@ -305,7 +307,7 @@ Sub paste(n)
         .MergeCells = False
     End With
 End Sub
-Sub Derivada(n)
+Private Sub Derivada(n)
 '
 ' Derivada Macro
 ' Derivada do dz/dy por diferenças finitas
@@ -335,7 +337,7 @@ Sub Derivada(n)
     esticar (nn)
     'Range("M5:M206187").Select
 End Sub
-Sub tan_min(ByVal n As Integer)
+Private Sub tan_min(ByVal n As Integer)
 '
 ' tan_min Macro
 ' Acha o minimo da tangente (derivada) à curva z=f(y)
@@ -347,7 +349,7 @@ Sub tan_min(ByVal n As Integer)
     Range("M3").Select
     Selection.End(xlUp).Select
 End Sub
-Sub encontrar_indice()
+Private Sub encontrar_indice()
 '
 ' encontrar_indice Macro
 ' Encontra o Indice do valor procurado nesse caso a tangente minima que corresponde ao ponto de inflexão.
@@ -358,7 +360,7 @@ Sub encontrar_indice()
     ActiveCell.FormulaR1C1 = "=MATCH(R[1]C,R[3]C:R[428]C,0)"
     Range("M1").Select
 End Sub
-Sub coor_pto_inflex()
+Private Sub coor_pto_inflex()
 '
 ' coor_pto_inflex Macro
 ' ubica na matriz de pontos as coordenadas do ponto de inflexão com o conhecimento do indice do pto de minimo.
@@ -418,7 +420,7 @@ Sub coor_pto_inflex()
     End With
     Selection.Font.Bold = True
 End Sub
-Sub esticar(ByVal matriz As String)
+Private Sub esticar(ByVal matriz As String)
 '
 ' esticar Macro
 ' esticar formulas até fim dos dados de entrada.
@@ -429,7 +431,7 @@ Sub esticar(ByVal matriz As String)
         xlFillDefault
     ActiveCell.Range(matriz).Select
 End Sub
-Sub delete_snp_data()
+Private Sub delete_snp_data()
 '
 ' delete_snp_data Macro
 '
@@ -463,7 +465,7 @@ Private Sub delete_all()
     Selection.QueryTable.Delete
     Selection.ClearContents
 End Sub
-Sub delete__all_cells()
+Private Sub delete__all_cells()
 '
 ' delete__all_cells Macro
 '
@@ -472,8 +474,17 @@ Sub delete__all_cells()
     ActiveCell.Cells.Select
     Selection.Delete Shift:=xlUp
 End Sub
+Private Sub DeleteSheet()
 
+    ActiveSheet.Delete
+    'ActiveWindow.SelectedSheets.Delete
 
+End Sub
+
+Private Static Sub NewSheet()
+    'ActiveWorkbook.Sheets.Add After:=Worksheets(Worksheets.Count), Count:=1
+    Sheets.Add After:=Sheets(Sheets.Count)
+End Sub
 
 
 
