@@ -1,11 +1,15 @@
 Attribute VB_Name = "Módulo1"
 Public Sub automatic()
     Dim no As Integer
-    'Call DeleteSheet
+    Call DeleteSheet
     Call NewSheet
     no = an_snp()
     an_map (no)
 End Sub
+
+
+
+
 
 'Sub an_map(no As Integer)
 ''
@@ -70,7 +74,7 @@ Attribute txtimport.VB_ProcData.VB_Invoke_Func = " \n14"
     With ActiveSheet.QueryTables.Add(Connection:= _
         "TEXT;" & ActiveWorkbook.Path & "\Resultado.MAP" _
         , Destination:=Range("$A$1"))
-        .Name = "D16_LA50_R150Relax2_r"
+        .name = "D16_LA50_R150Relax2_r"
         .FieldNames = True
         .RowNumbers = False
         .FillAdjacentFormulas = False
@@ -214,7 +218,7 @@ Private Sub txtimport1(ByVal file_name As String)
     With ActiveSheet.QueryTables.Add(Connection:= _
         "TEXT;" & ActiveWorkbook.Path & "\" & file_name _
         , Destination:=Range("$A$1"))
-        .Name = "D16_LA50_R150Relax2_r"
+        .name = "D16_LA50_R150Relax2_r"
         .FieldNames = True
         .RowNumbers = False
         .FillAdjacentFormulas = False
@@ -474,17 +478,28 @@ Private Sub delete__all_cells()
     ActiveCell.Cells.Select
     Selection.Delete Shift:=xlUp
 End Sub
-Private Sub DeleteSheet()
+Sub DeleteSheet()
 
-    ActiveSheet.Delete
+    Application.DisplayAlerts = False
+    Application.ScreenUpdating = False
+    'Sheets("Plan1").Delete
+    Sheets(1).Delete
+    'ActiveSheet.Delete
     'ActiveWindow.SelectedSheets.Delete
+    Application.DisplayAlerts = True
+    Application.ScreenUpdating = False
+    
+'    Option Explicit
+'Sub DelSht()
+'    Application.DisplayAlerts = False
+'    Sheets("Sheet1").Delete
+'    Application.DisplayAlerts = True
+'End Sub
 
 End Sub
 
 Private Static Sub NewSheet()
     'ActiveWorkbook.Sheets.Add After:=Worksheets(Worksheets.Count), Count:=1
     Sheets.Add After:=Sheets(Sheets.Count)
+    'Sheets.Add.name = "Plan1"
 End Sub
-
-
-
