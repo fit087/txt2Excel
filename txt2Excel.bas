@@ -1,16 +1,12 @@
 Attribute VB_Name = "Módulo1"
 Public Sub automatic()
     Dim no As Integer
-    Call DeleteSheet
-    Call NewSheet
+    'Call DeleteSheet
+    'Call NewSheet
+    Call ClearSheet1
     no = an_snp()
     an_map (no)
 End Sub
-
-
-
-
-
 'Sub an_map(no As Integer)
 ''
 '' an_map Macro
@@ -482,8 +478,8 @@ Sub DeleteSheet()
 
     Application.DisplayAlerts = False
     Application.ScreenUpdating = False
-    'Sheets("Plan1").Delete
-    Sheets(1).Delete
+    Sheets("Plan1").Delete
+    'Sheets(1).Delete
     'ActiveSheet.Delete
     'ActiveWindow.SelectedSheets.Delete
     Application.DisplayAlerts = True
@@ -500,6 +496,29 @@ End Sub
 
 Private Static Sub NewSheet()
     'ActiveWorkbook.Sheets.Add After:=Worksheets(Worksheets.Count), Count:=1
-    Sheets.Add After:=Sheets(Sheets.Count)
-    'Sheets.Add.name = "Plan1"
+    'Sheets.Add After:=Sheets(Sheets.Count)
+    Sheets.Add.name = "Plan1"
+End Sub
+Private Sub ClearSheet1()
+    Dim wb As Workbook
+    Dim ws As Worksheet
+    Dim flag As Boolean
+    flag = False
+        
+    Set wb = ActiveWorkbook
+    
+    For Each ws In wb.Worksheets
+    
+        If ws.name = "Plan1" Then
+            'Do something here
+            Call DeleteSheet
+            Call NewSheet
+            flag = True
+        End If
+    
+    Next
+    
+    If flag = False Then
+        Call NewSheet
+    End If
 End Sub
