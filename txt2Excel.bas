@@ -1,11 +1,30 @@
 Attribute VB_Name = "Módulo1"
+Option Explicit
+
 Public Sub automatic()
+    'Application.Calculation = xlCalculationManual
+    'Application.Calculation = False
+    Application.ScreenUpdating = False
+    Application.EnableEvents = False
+    
+    
+    'Application.Calculation = xlCalculationAutomatic
+    'Application.Calculation = True
+    'Application.ScreenUpdating = True
+    'Application.EnableEvents = True
+
+
     Dim no As Integer
     'Call DeleteSheet
     'Call NewSheet
     Call ClearSheet1
     no = an_snp()
     an_map (no)
+    'Application.Calculation = xlCalculationAutomatic
+    'Application.Calculation = True
+    Application.ScreenUpdating = True
+    Application.EnableEvents = True
+
 End Sub
 'Sub an_map(no As Integer)
 ''
@@ -500,12 +519,10 @@ Private Static Sub NewSheet()
     Sheets.Add.name = "Plan1"
 End Sub
 Private Sub ClearSheet1()
-    Dim wb As Workbook
-    Dim ws As Worksheet
-    Dim flag As Boolean
+    Dim wb As Workbook, ws As Worksheet, flag As Boolean
     flag = False
         
-    Set wb = ActiveWorkbook
+    Set wb = ActiveWorkbook     ' Atribuição de Variável Objeto
     
     For Each ws In wb.Worksheets
     
