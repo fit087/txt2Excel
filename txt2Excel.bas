@@ -65,18 +65,12 @@ Public Function an_snp() As Integer
 ' Atalho do teclado: Not Registered
 '
     'txtimport1 ("TesteRodando3_1_1_RD_Linha_1_r.SNP")
-    'txtimport1 ("Teste_Mauro_RD_Linha_1_r.SNP")
-    txtimport1 ("TesteRodandoLR1_d_0.SNP")
+    txtimport1 ("Teste_Mauro_RD_Linha_1_r.SNP")
     Call ult_copy
-    'paste (426)
-    'Call paste
-    Dim line_pnt As Integer
-    line_pnt = paste
+    paste (426)
     'Call paste_test
-    'Derivada (426)
-    Derivada (line_pnt)
-    'tan_min (426)
-    tan_min (line_pnt)
+    Derivada (426)
+    tan_min (426)
     Call encontrar_indice
     Call coor_pto_inflex
     an_snp = Range("M1").Value
@@ -92,11 +86,8 @@ Attribute txtimport.VB_ProcData.VB_Invoke_Func = " \n14"
 '
 '
 ' "\D16_LA50_R150Relax2_r.MAP"
-' "\TesteRodandoLR1_d_0.MAP"
-' "\Resultado.MAP"
-
     With ActiveSheet.QueryTables.Add(Connection:= _
-        "TEXT;" & ActiveWorkbook.Path & "\TesteRodandoLR1_d_0.MAP" _
+        "TEXT;" & ActiveWorkbook.Path & "\Resultado.MAP" _
         , Destination:=Range("$A$1"))
         .name = "D16_LA50_R150Relax2_r"
         .FieldNames = True
@@ -239,11 +230,10 @@ Private Sub txtimport1(ByVal file_name As String)
 '
 '
 ' "\D16_LA50_R150Relax2_r.MAP"
-' TesteRodandoLR1_d_0.MAP
     With ActiveSheet.QueryTables.Add(Connection:= _
         "TEXT;" & ActiveWorkbook.Path & "\" & file_name _
         , Destination:=Range("$A$1"))
-        .name = "TesteRodandoLR1_d_0.MAP"
+        .name = "D16_LA50_R150Relax2_r"
         .FieldNames = True
         .RowNumbers = False
         .FillAdjacentFormulas = False
@@ -285,27 +275,16 @@ Private Sub ult_copy()
     Selection.copy
     'ActiveCell.Offset(0, -1).Range("A1").Activate
 End Sub
-Private Sub tes()
-    Range("E4").PasteSpecial
-End Sub
-
-'Private Sub paste(n)
-'Private Sub paste()
-Private Function paste() As Integer
-
+Private Sub paste(n)
 '
 ' paste Macro
 ' Cola as deformações de n pontos do lado da configuração original (SNP file)
 
 '
-    'Dim n As Integer
     ' ---------------------------
     Range("G4").Select
     ActiveSheet.paste
-    'n = Selection.Rows.Count
-    paste = Selection.Rows.Count
     Range("G3").Select
-    'MsgBox (n)
     Application.CutCopyMode = False
     ActiveCell.FormulaR1C1 = ChrW(916) & "X" 'ActiveCell.FormulaR1C1 = "X"
     Range("H3").Select
@@ -328,8 +307,7 @@ Private Function paste() As Integer
     Range("J4:L4").Select
     'Selection.AutoFill Destination:=Range("J4:L3412")
     'esticar ("A1:C426")
-    'esticar ("A1:C" & n)
-    esticar ("A1:C" & paste)
+    esticar ("A1:C" & n)
     
     
     'Range("J4:L3412").Select
@@ -347,7 +325,7 @@ Private Function paste() As Integer
         .ReadingOrder = xlContext
         .MergeCells = False
     End With
-End Function
+End Sub
 Private Sub Derivada(n)
 '
 ' Derivada Macro
