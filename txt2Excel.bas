@@ -26,6 +26,14 @@ Public Sub automatic()
     Application.EnableEvents = True
 
 End Sub
+Sub testando()
+    Dim a As String
+    a = Range("A1").Value
+    MsgBox ("Rodou")
+    MsgBox (a)
+    MsgBox (ActiveWorkbook.Path)
+End Sub
+
 'Sub an_map(no As Integer)
 ''
 '' an_map Macro
@@ -83,8 +91,6 @@ Public Function an_snp() As Integer
     Call delete_snp_data
 End Function
 Private Sub txtimport()
-Attribute txtimport.VB_Description = "import txt"
-Attribute txtimport.VB_ProcData.VB_Invoke_Func = " \n14"
 '
 ' txtimport Macro
 ' import the text file called Resultado.MAP
@@ -150,7 +156,6 @@ Private Sub ult_matrix()
 
 End Sub
 Private Sub suprim()
-Attribute suprim.VB_ProcData.VB_Invoke_Func = " \n14"
 '
 ' suprim Macro
 ' Delete the other matrices on the *.map file
@@ -162,8 +167,6 @@ Attribute suprim.VB_ProcData.VB_Invoke_Func = " \n14"
     Range("A1").Select
 End Sub
 Private Sub VME_DTE_max()
-Attribute VME_DTE_max.VB_Description = "Von Mises e Deformação maximo"
-Attribute VME_DTE_max.VB_ProcData.VB_Invoke_Func = " \n14"
 '
 ' VME_DTE_max Macro
 ' Toma o Von Mises e Deformação maxima from the *.MAP file
@@ -208,12 +211,14 @@ Private Sub VME_DTE_max1(inflex_pto As Integer)
     Selection.Insert Shift:=xlDown
     Range("S1").Select
     ActiveCell.FormulaR1C1 = "=MAX(R[6]C:R[" & 2 * inflex_pto + 5 & "]C)"
+    Range("R1") = "VME_SagBend"
     
     ' DTE
     Range("S1").Select
     Selection.copy
     Range("AA1").Select
     ActiveSheet.paste
+    Range("Z1") = "DTE_SagBend"
     
     ' Overbend
     ' VME
@@ -221,12 +226,14 @@ Private Sub VME_DTE_max1(inflex_pto As Integer)
     Selection.Insert Shift:=xlDown
     Range("S1").Select
     ActiveCell.FormulaR1C1 = "=MAX(R[" & 2 * inflex_pto + 6 & "]C:R[856]C)"
+    Range("R1") = "VME_OverBend"
 
     ' DTE
     Range("S1").Select
     Selection.copy
     Range("AA1").Select
     ActiveSheet.paste
+    Range("Z1") = "DTE_OverBend"
 
     
     Range("A1").Select
@@ -240,6 +247,10 @@ Private Sub txtimport1(ByVal file_name As String)
 '
 ' "\D16_LA50_R150Relax2_r.MAP"
 ' TesteRodandoLR1_d_0.MAP
+    'MsgBox (ActiveWorkbook.Path)
+    'On Error Resume Next
+    'On Error GoTo 0
+    On Error GoTo didnt_import
     With ActiveSheet.QueryTables.Add(Connection:= _
         "TEXT;" & ActiveWorkbook.Path & "\" & file_name _
         , Destination:=Range("$A$1"))
@@ -269,7 +280,12 @@ Private Sub txtimport1(ByVal file_name As String)
         .TextFileTrailingMinusNumbers = True
         .Refresh BackgroundQuery:=False
     End With
-       
+    Exit Sub
+    
+didnt_import:
+       MsgBox ("Arquivo '" & file_name & "' não encontrado em '" & ActiveWorkbook.Path & "' ")
+       Exit Sub
+    
 End Sub
 Private Sub ult_copy()
 '
@@ -281,6 +297,8 @@ Private Sub ult_copy()
     Range("E3").Select
     Selection.End(xlDown).Select
     Selection.End(xlDown).Select
+    
+    ' Atention esta sendo usando 426 que es un valor definido de pontos da linha
     ActiveCell.Offset(-425, -3).Range("A1:C426").Select
     Selection.copy
     'ActiveCell.Offset(0, -1).Range("A1").Activate
@@ -561,3 +579,5 @@ Private Sub ClearSheet1()
         Call NewSheet
     End If
 End Sub
+
+
