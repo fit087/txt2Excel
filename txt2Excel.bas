@@ -1,4 +1,4 @@
-Attribute VB_Name = "MÛdulo1"
+Attribute VB_Name = "M√≥dulo1"
 Option Explicit
 
 Public Sub automatic()
@@ -37,7 +37,7 @@ End Sub
 'Sub an_map(no As Integer)
 ''
 '' an_map Macro
-'' An·lise dos Resultados do MAP File
+'' An√°lise dos Resultados do MAP File
 ''
 '' Atalho do teclado: Not Registered
 ''
@@ -51,11 +51,16 @@ Private Sub test1()
 '    Range("R5").Select
 '    ActiveCell.FormulaR1C1 = ChrW(916) ' " \n916"
 '    Range("S5") = ChrW(916)
+
+' Take the file name of the workbook with extension and add an ending
+    Dim file_name As String
+    file_name = ActiveWorkbook.Name
+    MsgBox (Left(file_name, InStrRev(file_name, ".") - 1) + "_d_0.map")
 End Sub
 Sub an_map(no As Integer)
 '
 ' an_map Macro
-' An·lise dos Resultados do MAP File
+' An√°lise dos Resultados do MAP File
 '
 ' Atalho do teclado: Not Registered
 '
@@ -68,7 +73,7 @@ End Sub
 Public Function an_snp() As Integer
 '
 ' an_snp Macro
-' An·lise dos Resultados do SNP File
+' An√°lise dos Resultados do SNP File
 '
 ' Atalho do teclado: Not Registered
 '
@@ -142,7 +147,7 @@ Private Sub ult_matrix()
 
 '    ActiveCell.SpecialCells(xlLastCell).Select  'va para a ultima celula do arquivo
 '    Selection.End(xlToLeft).Select              'Retorna ao inicio da ultima linha
-'    Selection.End(xlUp).Select                  'sobe atÈ o inicio da coluna ctrl+up
+'    Selection.End(xlUp).Select                  'sobe at√© o inicio da coluna ctrl+up
 '    Selection.End(xlUp).Select                  '(ctrl+up)
 '    ActiveCell.Offset(-1, 0).Range("A1").Select 'sobe uma celula para cima (up) usa referencia relativa
     
@@ -150,7 +155,7 @@ Private Sub ult_matrix()
     Selection.End(xlDown).Select                    '(ctrl+Down)
     ActiveCell.Offset(0, -1).Range("A1").Select
     'ActiveCell.Offset(0, -1).Range("B1").Select     'Regresa 1 celula (LEFT) usa referencia relativa
-    Selection.End(xlUp).Select                      'sobe atÈ o inicio da coluna ctrl+up
+    Selection.End(xlUp).Select                      'sobe at√© o inicio da coluna ctrl+up
     Selection.End(xlUp).Select                      '(ctrl+up)
     ActiveCell.Offset(-3, 0).Range("A1").Select     'sobe 3 celulas para cima (up) usa referencia relativa
 
@@ -169,7 +174,7 @@ End Sub
 Private Sub VME_DTE_max()
 '
 ' VME_DTE_max Macro
-' Toma o Von Mises e DeformaÁ„o maxima from the *.MAP file
+' Toma o Von Mises e Deforma√ß√£o maxima from the *.MAP file
 '
 
 '
@@ -189,7 +194,7 @@ End Sub
 Private Sub VME_DTE_max1(inflex_pto As Integer)
 '
 ' VME_DTE_max Macro
-' Toma o Von Mises e DeformaÁ„o maxima from the *.MAP file
+' Toma o Von Mises e Deforma√ß√£o maxima from the *.MAP file
 '
 
 '
@@ -283,14 +288,14 @@ Private Sub txtimport1(ByVal file_name As String)
     Exit Sub
     
 didnt_import:
-       MsgBox ("Arquivo '" & file_name & "' n„o encontrado em '" & ActiveWorkbook.Path & "' ")
+       MsgBox ("Arquivo '" & file_name & "' n√£o encontrado em '" & ActiveWorkbook.Path & "' ")
        Exit Sub
     
 End Sub
 Private Sub ult_copy()
 '
 ' ult_desc Macro
-' Copia as ultimas deformaÁıes from *.SNP file
+' Copia as ultimas deforma√ß√µes from *.SNP file
 '
 
 '
@@ -313,7 +318,7 @@ Private Function paste() As Integer
 
 '
 ' paste Macro
-' Cola as deformaÁıes de n pontos do lado da configuraÁ„o original (SNP file)
+' Cola as deforma√ß√µes de n pontos do lado da configura√ß√£o original (SNP file)
 
 '
     'Dim n As Integer
@@ -369,7 +374,7 @@ End Function
 Private Sub Derivada(n)
 '
 ' Derivada Macro
-' Derivada do dz/dy por diferenÁas finitas
+' Derivada do dz/dy por diferen√ßas finitas
 '
 
 '
@@ -399,7 +404,7 @@ End Sub
 Private Sub tan_min(ByVal n As Integer)
 '
 ' tan_min Macro
-' Acha o minimo da tangente (derivada) ‡ curva z=f(y)
+' Acha o minimo da tangente (derivada) √† curva z=f(y)
 '
 
 '
@@ -411,7 +416,7 @@ End Sub
 Private Sub encontrar_indice()
 '
 ' encontrar_indice Macro
-' Encontra o Indice do valor procurado nesse caso a tangente minima que corresponde ao ponto de inflex„o.
+' Encontra o Indice do valor procurado nesse caso a tangente minima que corresponde ao ponto de inflex√£o.
 '
 
 '
@@ -422,7 +427,7 @@ End Sub
 Private Sub coor_pto_inflex()
 '
 ' coor_pto_inflex Macro
-' ubica na matriz de pontos as coordenadas do ponto de inflex„o com o conhecimento do indice do pto de minimo.
+' ubica na matriz de pontos as coordenadas do ponto de inflex√£o com o conhecimento do indice do pto de minimo.
 '
 
 '
@@ -442,7 +447,7 @@ Private Sub coor_pto_inflex()
     Range("Q2").Select
     ActiveCell.FormulaR1C1 = "Z"
     Range("O1").Select
-    ActiveCell.FormulaR1C1 = "Pto. De Inflex„o"
+    ActiveCell.FormulaR1C1 = "Pto. De Inflex√£o"
     Range("O1:Q1").Select
     With Selection
         .HorizontalAlignment = xlCenter
@@ -482,7 +487,7 @@ End Sub
 Private Sub esticar(ByVal matriz As String)
 '
 ' esticar Macro
-' esticar formulas atÈ fim dos dados de entrada.
+' esticar formulas at√© fim dos dados de entrada.
 '
 
 '
@@ -562,7 +567,7 @@ Private Sub ClearSheet1()
     Dim wb As Workbook, ws As Worksheet, flag As Boolean
     flag = False
         
-    Set wb = ActiveWorkbook     ' AtribuiÁ„o de Vari·vel Objeto
+    Set wb = ActiveWorkbook     ' Atribui√ß√£o de Vari√°vel Objeto
     
     For Each ws In wb.Worksheets
     
