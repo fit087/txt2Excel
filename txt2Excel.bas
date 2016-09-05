@@ -64,7 +64,13 @@ Sub an_map(no As Integer)
 '
 ' Atalho do teclado: Not Registered
 '
-    Call txtimport
+    Dim file_name, root_name  As String
+    file_name = ActiveWorkbook.Name
+    'MsgBox (Left(file_name, InStrRev(file_name, ".") - 1) + "_d_0.map")
+    root_name = Left(file_name, InStrRev(file_name, ".") - 1)
+    
+    Call txtimport(root_name)
+    'Call txtimport
     Call ult_matrix
     Call suprim
     'Call VME_DTE_max
@@ -95,7 +101,8 @@ Public Function an_snp() As Integer
     an_snp = Range("M1").Value
     Call delete_snp_data
 End Function
-Private Sub txtimport()
+Private Sub txtimport(root_name As String)
+'Private Sub txtimport()
 '
 ' txtimport Macro
 ' import the text file called Resultado.MAP
